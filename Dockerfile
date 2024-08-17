@@ -15,3 +15,4 @@ COPY . .
 
 # Start the app
 CMD ["npm","start"]
+

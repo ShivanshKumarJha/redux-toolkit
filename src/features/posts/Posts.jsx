@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { Loader } from 'rsuite';
 
-
 import { selectAllPosts, getPostsError, getPostsStatus } from './postsSlice';
 import TableData from './TableData';
 import { fetchPosts } from './postsSlice';
