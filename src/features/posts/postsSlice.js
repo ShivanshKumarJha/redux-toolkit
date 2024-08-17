@@ -33,4 +33,35 @@ const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(fetchPosts.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchPosts.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.posts = state.posts.concat(action.payload);
+      })
+      .addCase(fetchPosts.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        if (!action?.payload.id) {
+          console.log('Could not delete!');
+          console.log(action.payload);
+          return;
+        }
+
+        const { id } = action.payload;
+        const newPosts = state.posts.filter(post => post.id !== id);
+        state.posts = newPosts;
+      });
+  },
 });
+
+export const selectAllPosts = state => state.posts.posts;
+export const getPostsError = state => state.posts.error;
+export const getPostsStatus = state => state.posts.status;
+
+export default postsSlice.reducer;
