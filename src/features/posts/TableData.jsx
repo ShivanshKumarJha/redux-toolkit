@@ -2,6 +2,7 @@ import React from 'react';
 import { deletePost } from './postsSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 const TableData = ({ post }) => {
   const navigate = useNavigate();
@@ -23,15 +24,12 @@ const TableData = ({ post }) => {
         <h2 className="text-amber-700  capitalize text-lg font-semibold text-justify">
           {post.title}
         </h2>
-        <p className='text-justify'>{post.body}</p>
+        <p className="text-justify">{post.body}</p>
       </div>
       <div>
-        <button
-          className="btn btn-danger p-1 bg-rose-600 text-white border-2 rounded-lg border-rose-800 border-spacing-2"
-          onClick={handleDelete}
-        >
+        <Button size='sm' variant="outline-danger" onClick={handleDelete}>
           Delete
-        </button>
+        </Button>
       </div>
     </div>
   );
